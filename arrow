@@ -1,0 +1,79 @@
+#pragma strict
+private var lightName : String;
+private var darkName : String;
+
+function Awake()
+{
+	if (name.Contains("lR"))
+	{
+		lightName = "arrowRight";
+	}
+	else if (name.Contains("lL"))
+	{
+		lightName = "arrowLeft";
+	}
+	else if (name.Contains("lU"))
+	{
+		lightName = "arrowUp";
+	}
+	else if (name.Contains("lD"))
+	{
+		lightName = "arrowDown";
+	}
+	else if (name.Contains("lN"))
+	{
+		lightName = "arrowNull";
+	}
+	else
+	{
+		Debug.Log("Naming was messed up.");
+	}
+	
+	if (name.Contains("dR"))
+	{
+		darkName = "arrowRight";
+	}
+	else if (name.Contains("dL"))
+	{
+		darkName = "arrowLeft";
+	}
+	else if (name.Contains("dU"))
+	{
+		darkName = "arrowUp";
+	}
+	else if (name.Contains("dD"))
+	{
+		darkName = "arrowDown";
+	}
+	else if (name.Contains("dN"))
+	{
+		darkName = "arrowNull";
+	}
+	else
+	{
+		Debug.Log("Naming was messed up.");
+	}
+	
+	name = lightName;
+}
+
+function Start ()
+{
+
+}
+
+function Update () 
+{
+
+
+}
+
+function Flip()
+{
+	name = darkName;
+}
+
+function UnFlip()
+{
+	name = lightName;
+}
