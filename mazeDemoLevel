@@ -1,0 +1,48 @@
+#pragma strict
+var rip : GameObject;
+private var ray :Ray;
+private var rayCastHit : RaycastHit;
+private var defaultRipPosition : Vector3;
+private var layerMask : int;
+var background : GameObject;
+
+function Awake()
+{
+	defaultRipPosition = rip.transform.position;
+	layerMask = LayerMask.GetMask("Background");
+}
+
+function Start ()
+{
+
+}
+
+function Update ()
+{
+	if (Input.GetMouseButton(0))
+	{
+		ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		//Be careful because right now, Raycast can only hit background layer
+		if (Physics.Raycast(ray,rayCastHit, Mathf.Infinity, layerMask))
+		{
+			//var ripPosition : Vector3 = Camera.main.ScreenToWorldPoint(Vector3(Input.mousePosition.x,Input.mousePosition.y, 10));
+			rip.transform.position = Camera.main.ScreenToWorldPoint(Vector3(Input.mousePosition.x,Input.mousePosition.y, 10));
+			//if (Physics.Raycast (transform.position, Vector3.forward, Mathf.Infinity, layerMask))
+			//{
+      //	Debug.Log("hitbackground");
+    	//}
+			
+			background.SendMessage("OpenPortal");
+		}
+	}
+	else if (Input.GetMouseButtonUp(0))
+	{
+		rip.transform.position = defaultRipPosition;
+		background.SendMessage("ClosePortal");
+	}
+	else
+	{
+		rip.transform.position = defaultRipPosition;
+		background.SendMessage("ClosePortal");
+	}
+}
