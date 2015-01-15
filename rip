@@ -1,0 +1,35 @@
+/*
+rip.JS interacts with the arrow objects in the game and alters the ways an arrow may push (apply new force) the ball object.
+*/
+
+#pragma strict
+
+function Awake(){
+
+}
+
+function Start () {
+
+}
+
+function Update (){
+
+}
+
+function OnTriggerEnter(other : Collider)
+{
+	if(other.gameObject.tag != "Ball" && other.GetType() == SphereCollider)
+	{
+		other.gameObject.SendMessage("Flip");
+		Debug.Log("true");
+	}
+}
+
+function OnTriggerExit(other : Collider)
+{
+	if(other.gameObject.tag != "Ball" && other.GetType() == SphereCollider)
+	{
+		other.gameObject.SendMessage("UnFlip");
+		Debug.Log("false");
+	}
+}
