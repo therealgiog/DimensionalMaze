@@ -1,3 +1,8 @@
+/*
+arrow.JS renames all arrows in the maze so they can be properly called and used by the
+rip.JS script and ball.JS script.
+*/
+
 #pragma strict
 private var lightName : String;
 private var darkName : String;
