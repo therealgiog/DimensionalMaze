@@ -1,3 +1,10 @@
+/*
+mazeDemoLevel.JS contains the main logic for a maze level in the game.
+A LayerMask is needed to create a "hole" in the first background image so the second background image can be seen.
+This is the "rip in dimensions" aka a portal between dimensions.
+This script is used for displaying the rip/portal on screen.
+*/
+
 #pragma strict
 var rip : GameObject;
 private var ray :Ray;
