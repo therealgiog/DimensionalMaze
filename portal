@@ -1,0 +1,32 @@
+/*
+portal.JS works with the LayerMask to actually cut a hole in the first background image relative to the position of the "rip" object.
+*/
+
+#pragma strict
+    
+// Take effect even in edit mode
+@script ExecuteInEditMode()
+     
+private var position : Vector3;
+var rip : GameObject;
+
+function Awake()
+{
+	position = Vector3(30,0,0);
+}
+
+
+function Update ()
+{
+    renderer.sharedMaterial.SetVector("_PlayerPosition", position);
+}
+
+function OpenPortal()
+{
+	position = Vector3(rip.transform.position.x,rip.transform.position.y,0);
+}
+
+function ClosePortal()
+{
+	position = Vector3(30,0,0);
+}
