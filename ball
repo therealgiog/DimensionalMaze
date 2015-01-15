@@ -1,0 +1,69 @@
+#pragma strict
+var particles_splash : GameObject;
+private var direction;
+private var reset = true;
+private var oldVelocity : Vector3;
+
+function Awake()
+{
+	rigidbody.AddForce(0,3,0,ForceMode.Impulse);
+}
+
+function Start ()
+{
+
+}
+
+function Update ()
+{
+
+}
+
+function OnTriggerExit(other : Collider)
+{
+	if(/*other.gameObject.tag == "Arrow" &&*/ reset == true && other.GetType() == BoxCollider)
+	{
+		transform.position = other.gameObject.transform.position;
+		oldVelocity = rigidbody.velocity;
+		rigidbody.velocity = Vector3.zero;
+		direction = other.gameObject.name; 
+		switch (direction)
+    	{
+    		case "arrowRight":
+        		rigidbody.AddForce(3,0,0,ForceMode.Impulse);
+        		reset = false;
+        		break;
+    		case "arrowLeft":
+        		rigidbody.AddForce(-3,0,0,ForceMode.Impulse);
+        		reset = false;
+        		break;
+    		case "arrowUp":
+        		rigidbody.AddForce(0,3,0,ForceMode.Impulse);
+        		reset = false;
+        		break;
+    		case "arrowDown":
+        		rigidbody.AddForce(0,-3,0,ForceMode.Impulse);
+        		reset = false;
+        		break;
+        	case "arrowNull":
+        		rigidbody.AddForce(oldVelocity,ForceMode.Impulse);
+        		reset = false;
+        		break;
+   			default:
+        		Debug.Log("switch went wrong");
+        		reset = false;
+        		break;
+		}
+	}
+	else if (/*other.gameObject.tag == "Arrow" &&*/ reset == false && other.GetType() == BoxCollider)
+	{
+		reset = true;
+	}
+}
+
+function OnCollisionEnter(collision : Collision)
+{
+
+	var newexplosion : GameObject = Instantiate(particles_splash,transform.position,transform.rotation);
+	Destroy(newexplosion,1);
+}
