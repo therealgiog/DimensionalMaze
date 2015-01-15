@@ -1,3 +1,7 @@
+/*
+ball.JS constantly gives the ball a new force based on any colliders and "arrows" it interacts with.
+*/
+
 #pragma strict
 var particles_splash : GameObject;
 private var direction;
